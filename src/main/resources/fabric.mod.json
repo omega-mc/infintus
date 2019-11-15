@@ -1,0 +1,40 @@
+
+{
+  "schemaVersion": 1,
+  "id": "modid",
+  "version": "${version}",
+
+  "name": "Fabric Example Mod",
+  "description": "Draylar's Fabric Example Mod!",
+  "authors": [
+    "Draylar"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Draylar",
+    "sources": "https://github.com/Draylar/fabric-example-mod"
+  },
+
+  "license": "GPLv3",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.github.draylar.modid.ExampleMod"
+    ],
+    "client": [
+      "com.github.draylar.modid.ExampleModClient"
+    ]
+  },
+  "mixins": [
+    "modid.mixins.json"
+  ],
+
+  "requires": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
