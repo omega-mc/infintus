@@ -23,7 +23,7 @@ public abstract class LivingEntityMixin {
     @Inject(at = @At("HEAD"), method = "tick")
     private void onTick(CallbackInfo ci) {
         if(this.getMainHandStack().getItem().equals(Items.INFINITY_DAGGER) || this.getOffHandStack().getItem().equals(Items.INFINITY_DAGGER)) {
-            this.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, 1, 0, true, false));
+            this.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, 2, 0, true, false));
         }
     }
 }
