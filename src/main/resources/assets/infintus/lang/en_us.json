@@ -1,0 +1,38 @@
+{
+  "itemGroup.infintus.group": "Infintus",
+
+  "item.infintus.infinity_sword": "Blade at the Edge of Infinity",
+  "item.infintus.infinity_dagger": "Divine Night",
+  "item.infintus.infinity_pickaxe": "Otherwordly Core Piercer",
+  "item.infintus.infinity_shovel": "Divider of the Grounds",
+  "item.infintus.infinity_hoe": "Earth's Infinite Grace",
+  "item.infintus.infinity_axe": "Divine Titan Feller",
+  "item.infintus.garden_of_eve": "Garden of Eve",
+  "item.infintus.ultimate_diner_deluxe": "Ultimate Diner Deluxe",
+
+  "item.infintus.ultimate_sword": "Ultimate Sword",
+  "item.infintus.ultimate_pickaxe": "Ultimate Pickaxe",
+  "item.infintus.ultimate_shovel": "Ultimate Shovel",
+  "item.infintus.ultimate_hoe": "Ultimate Hoe",
+  "item.infintus.ultimate_axe": "Ultimate Axe",
+
+  "item.infintus.ultimate_singularity": "Ultimate Singularity",
+  "item.infintus.infinity_singularity": "Infinity Singularity",
+  "item.infintus.apple_singularity": "Apple Singularity",
+  "item.infintus.iron_singularity": "Iron Singularity",
+  "item.infintus.gold_singularity": "Gold Singularity",
+  "item.infintus.diamond_singularity": "Diamond Singularity",
+  "item.infintus.ender_singularity": "Ender Singularity",
+  "item.infintus.redstone_singularity": "Redstone Singularity",
+  "item.infintus.lapis_singularity": "Lapis Singularity",
+  "item.infintus.emerald_singularity": "Emerald Singularity",
+  "item.infintus.bacon_singularity": "Bacon Singularity",
+  "item.infintus.beef_singularity": "Beef Singularity",
+  "item.infintus.bread_singularity": "Bread Singularity",
+  "item.infintus.cake_singularity": "Cake Singularity",
+  "item.infintus.nether_star_singularity": "Nether Star Singularity",
+  "item.infintus.prismarine_singularity": "Prismarine Singularity",
+
+  "block.infintus.singularity_compressor": "Singularity Compressor",
+  "block.infintus.infinity_crafting_table": "Infinity Crafting Table"
+}

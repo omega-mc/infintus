@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "infintus:item/infinity_pickaxe",
+    "layer1": "infintus:item/infinity_pickaxe_color"
+  }
+}

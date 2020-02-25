@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "infintus:item/infinity_hoe",
+    "layer1": "infintus:item/infinity_hoe_color"
+  }
+}

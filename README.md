@@ -1,14 +1,20 @@
-# Fabric Example Mod
+# Infintus
 
-Draylar's fork of the fabric-example-mod. Includes a modified package structure as well as several registry classes and a client initializer.
+Avarit... uh, I mean, Infintus!
 
-## Setup
+Infintus is a far-endgame mod focused on adding insanely overpowered items and gear that come at ridiculous costs. 
 
-1. Edit build.gradle and mod.json to suit your needs.
-    * The "mixins" object can be removed from mod.json if you do not need to use mixins.
-    * Please replace all occurences of "modid" with your own mod ID - sometimes, a different string may also suffice.
-2. Run the following command:
+Singularities can be crafted out of materials-- for example, an Iron Singularity costs 10,000 iron ingots by default. You'll need a number of every singularity to make an Ultimate Singularity, which can be used to make Ultimate Items. You'll need a couple thousand Ultimate Items to make an Infinity Singularity, which can be used to make insanely strong gear.
 
-```
-./gradlew idea
-```
+#### Versioning
+
+Infintus is built for Fabric 1.15.2.
+
+#### License
+
+Infintus is available under the MIT license. You are free to:
+ - use the mod code
+ - use the assets
+ - ship this mod in a modpack
+ 
+or anything else needed.

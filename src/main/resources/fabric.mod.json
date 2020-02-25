@@ -1,11 +1,11 @@
 
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "infintus",
   "version": "${version}",
 
-  "name": "Fabric Example Mod",
-  "description": "Draylar's Fabric Example Mod!",
+  "name": "Infintus",
+  "description": "Avarit... uh, I mean, Infintus!",
   "authors": [
     "Draylar"
   ],
@@ -15,19 +15,19 @@
   },
 
   "license": "GPLv3",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/infintus/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.github.draylar.modid.ExampleMod"
+      "draylar.infintus.Infintus"
     ],
     "client": [
-      "com.github.draylar.modid.ExampleModClient"
+      "draylar.infintus.InfintusClient"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "infintus.mixins.json"
   ],
 
   "requires": {

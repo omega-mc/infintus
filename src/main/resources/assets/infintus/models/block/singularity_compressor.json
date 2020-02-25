@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "infintus:block/singularity_compressor_top",
+    "front": "infintus:block/singularity_compressor_front",
+    "side": "infintus:block/singularity_compressor_side"
+  }
+}
