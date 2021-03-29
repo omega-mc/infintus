@@ -1,4 +1,4 @@
-package draylar.infintus.ui;
+package draylar.infintus.ui.compressor;
 
 import draylar.infintus.Infintus;
 import draylar.infintus.entity.SingularityCompressorBlockEntity;

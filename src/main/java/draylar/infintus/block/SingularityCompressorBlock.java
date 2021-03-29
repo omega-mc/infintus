@@ -1,8 +1,7 @@
 package draylar.infintus.block;
 
 import draylar.infintus.entity.SingularityCompressorBlockEntity;
-import draylar.infintus.ui.SingularityCompressorScreenHandler;
-import io.netty.buffer.ByteBuf;
+import draylar.infintus.ui.compressor.SingularityCompressorScreenHandler;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.*;
@@ -12,7 +11,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -25,7 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class SingularityCompressorBlock extends Block implements BlockEntityProvider {
 

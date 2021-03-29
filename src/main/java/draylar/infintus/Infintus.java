@@ -4,7 +4,8 @@ import draylar.infintus.config.ModConfig;
 import draylar.infintus.registry.InfintusBlocks;
 import draylar.infintus.registry.InfintusEntities;
 import draylar.infintus.registry.InfintusItems;
-import draylar.infintus.ui.SingularityCompressorScreenHandler;
+import draylar.infintus.ui.compressor.SingularityCompressorScreenHandler;
+import draylar.infintus.ui.forge.InfinityForgeScreenHandler;
 import draylar.omegaconfig.OmegaConfig;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -23,8 +24,12 @@ public class Infintus implements ModInitializer {
 	public static final ModConfig CONFIG = OmegaConfig.register(ModConfig.class);
 	public static final ItemGroup MAIN_GROUP = FabricItemGroupBuilder.build(id("group"), () -> new ItemStack(net.minecraft.item.Items.DIAMOND));
 	public static final Identifier SINGULARITY_COMPRESSOR_ID = id("singularity_compressor_container");
+	public static final Identifier INFINITY_FORGE_ID = id("infinity_forge_container");
+
 	public static final ScreenHandlerType<SingularityCompressorScreenHandler> SINGULARITY_COMPRESSOR_HANDLER
 			= ScreenHandlerRegistry.registerExtended(SINGULARITY_COMPRESSOR_ID, SingularityCompressorScreenHandler::new);
+	public static final ScreenHandlerType<InfinityForgeScreenHandler> INFINITY_FORGE_HANDLER
+			= ScreenHandlerRegistry.registerExtended(INFINITY_FORGE_ID, InfinityForgeScreenHandler::new);
 
 	@Override
 	public void onInitialize() {

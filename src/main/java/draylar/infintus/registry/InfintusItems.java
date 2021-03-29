@@ -28,6 +28,7 @@ public class InfintusItems {
 
     // mechanics
     public static final Item SINGULARITY_COMPRESSOR = register("singularity_compressor", new BlockItem(InfintusBlocks.SINGULARITY_COMPRESSOR, new Item.Settings().group(Infintus.MAIN_GROUP)));
+    public static final Item INFINITY_FORGE = register("infinity_forge", new BlockItem(InfintusBlocks.INFINITY_FORGE, new Item.Settings().group(Infintus.MAIN_GROUP)));
 
     // other items
     public static final Item GARDEN_OF_EVE = register("garden_of_eve", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(100000).build()).group(Infintus.MAIN_GROUP)));
