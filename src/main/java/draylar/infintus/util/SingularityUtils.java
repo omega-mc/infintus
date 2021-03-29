@@ -8,12 +8,12 @@ import net.minecraft.util.registry.Registry;
 public class SingularityUtils {
 
     public static boolean isValidMaterial(Item item) {
-        return Infintus.CONFIG.singularities.stream().anyMatch(singularity -> singularity.getSourceID().equals(Registry.ITEM.getId(item).toString()));
+        return Infintus.CONFIG.singularities.stream().anyMatch(singularity -> singularity.isCraftable() && singularity.getSourceID().equals(Registry.ITEM.getId(item).toString()));
     }
 
     public static Singularity getCompressionResult(Item item) {
         for (Singularity singularity : Infintus.CONFIG.singularities) {
-            if (singularity.getSourceID().equals(Registry.ITEM.getId(item).toString())) {
+            if (singularity.isCraftable() && singularity.getSourceID().equals(Registry.ITEM.getId(item).toString())) {
                 return singularity;
             }
         }

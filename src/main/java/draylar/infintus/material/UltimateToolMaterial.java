@@ -1,6 +1,6 @@
 package draylar.infintus.material;
 
-import draylar.infintus.registry.Items;
+import draylar.infintus.registry.InfintusItems;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
@@ -12,7 +12,7 @@ public class UltimateToolMaterial implements ToolMaterial {
     }
 
     @Override
-    public float getMiningSpeed() {
+    public float getMiningSpeedMultiplier() {
         return 30;
     }
 
@@ -33,6 +33,6 @@ public class UltimateToolMaterial implements ToolMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(Items.INFINITY_SINGULARITY);
+        return Ingredient.ofItems(InfintusItems.INFINITY_SINGULARITY);
     }
 }

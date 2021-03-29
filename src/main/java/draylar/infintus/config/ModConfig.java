@@ -1,14 +1,12 @@
 package draylar.infintus.config;
 
 import draylar.infintus.Infintus;
-import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
-import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
+import draylar.omegaconfig.api.Config;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Config(name = Infintus.MODID)
-public class ModConfig implements ConfigData {
+public class ModConfig implements Config {
 
     public List<Singularity> singularities = Arrays.asList(
             new Singularity.Builder()
@@ -91,4 +89,9 @@ public class ModConfig implements ConfigData {
                     .withColor(0xffeca1)
                     .build()
     );
+
+    @Override
+    public String getName() {
+        return Infintus.MODID;
+    }
 }

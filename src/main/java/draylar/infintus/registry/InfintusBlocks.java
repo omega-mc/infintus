@@ -10,7 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class Blocks {
+public class InfintusBlocks {
 
     public static final Block SINGULARITY_COMPRESSOR = register(
             "singularity_compressor",
@@ -39,7 +39,7 @@ public class Blocks {
         // NO-OP
     }
 
-    private Blocks() {
+    private InfintusBlocks() {
         // NO-OP
     }
 }

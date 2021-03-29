@@ -21,7 +21,7 @@ import java.util.List;
 public class InfinitySwordItem extends Item {
 
     public InfinitySwordItem() {
-        super(new Item.Settings().group(Infintus.MAIN_GROUP));
+        super(new Item.Settings().group(Infintus.MAIN_GROUP).maxCount(1));
     }
 
     @Override

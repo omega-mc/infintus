@@ -8,6 +8,6 @@ import net.minecraft.item.ShovelItem;
 public class InfinityShovelItem extends ShovelItem {
 
     public InfinityShovelItem() {
-        super(Materials.INFINITY_TOOL, 0, -1.6f, new Item.Settings().group(Infintus.MAIN_GROUP));
+        super(Materials.INFINITY_TOOL, 0, -1.6f, new Item.Settings().group(Infintus.MAIN_GROUP).maxCount(1));
     }
 }

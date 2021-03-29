@@ -1,6 +1,6 @@
 package draylar.infintus.material;
 
-import draylar.infintus.registry.Items;
+import draylar.infintus.registry.InfintusItems;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
@@ -31,7 +31,7 @@ public class InfinityArmorMaterial implements ArmorMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(Items.INFINITY_SINGULARITY);
+        return Ingredient.ofItems(InfintusItems.INFINITY_SINGULARITY);
     }
 
     @Override
@@ -42,5 +42,10 @@ public class InfinityArmorMaterial implements ArmorMaterial {
     @Override
     public float getToughness() {
         return 500;
+    }
+
+    @Override
+    public float getKnockbackResistance() {
+        return 0;
     }
 }

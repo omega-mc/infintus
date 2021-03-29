@@ -1,25 +1,31 @@
 package draylar.infintus.block;
 
-import draylar.infintus.Infintus;
 import draylar.infintus.entity.SingularityCompressorBlockEntity;
-import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
+import draylar.infintus.ui.SingularityCompressorScreenHandler;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.container.Container;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 public class SingularityCompressorBlock extends Block implements BlockEntityProvider {
 
@@ -34,18 +40,36 @@ public class SingularityCompressorBlock extends Block implements BlockEntityProv
                 .with(LIT, false)
         );
     }
+
     @Override
     public BlockEntity createBlockEntity(BlockView blockView) {
         return new SingularityCompressorBlockEntity();
     }
 
     @Override
-    public ActionResult onUse(BlockState blockState, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockHitResult blockHitResult) {
-        if(!world.isClient) {
-            ContainerProviderRegistry.INSTANCE.openContainer(Infintus.SINGULARITY_COMPRESSOR_CONTAINER, playerEntity, buf -> buf.writeBlockPos(pos));
+    public ActionResult onUse(BlockState blockState, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult blockHitResult) {
+        if (!world.isClient) {
+            player.openHandledScreen(new ExtendedScreenHandlerFactory() {
+                @Override
+                public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+                    buf.writeLong(pos.asLong());
+                }
+
+                @Override
+                public Text getDisplayName() {
+                    return new LiteralText("Singularity Compressor");
+                }
+
+                @Override
+                public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+                    PacketByteBuf packet = new PacketByteBuf(Unpooled.buffer());
+                    packet.writeLong(pos.asLong());
+                    return new SingularityCompressorScreenHandler(syncId, inv, packet);
+                }
+            });
         }
 
-        return super.onUse(blockState, world, pos, playerEntity, hand, blockHitResult);
+        return ActionResult.SUCCESS;
     }
 
     @Override
@@ -54,21 +78,17 @@ public class SingularityCompressorBlock extends Block implements BlockEntityProv
     }
 
     @Override
-    public int getLuminance(BlockState state) {
-        return state.get(LIT) ? super.getLuminance(state) : 0;
-    }
-
-    @Override
-    public void onBlockRemoved(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
 
             if (blockEntity instanceof SingularityCompressorBlockEntity) {
-                ItemScatterer.spawn(world, pos, ((SingularityCompressorBlockEntity) blockEntity).baseInventory);
-                world.updateHorizontalAdjacent(pos, this);
+                // TODO: DROP ITEMS
+//                ItemScatterer.spawn(world, pos, ((SingularityCompressorBlockEntity) blockEntity).inventory);
+                world.updateNeighbors(pos, this);
             }
 
-            super.onBlockRemoved(state, world, pos, newState, moved);
+            super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
 
@@ -79,7 +99,7 @@ public class SingularityCompressorBlock extends Block implements BlockEntityProv
 
     @Override
     public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-        return Container.calculateComparatorOutput(world.getBlockEntity(pos));
+        return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
     }
 
     @Override

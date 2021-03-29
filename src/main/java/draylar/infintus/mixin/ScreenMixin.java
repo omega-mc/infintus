@@ -10,11 +10,12 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.util.math.Matrix4f;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Matrix4f;
 import net.minecraft.util.registry.Registry;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,25 +29,26 @@ import java.util.List;
 @Mixin(Screen.class)
 public abstract class ScreenMixin extends AbstractParentElement implements Drawable {
 
-    @Shadow public abstract List<String> getTooltipFromItem(ItemStack itemStack);
-    @Shadow protected TextRenderer font;
     @Shadow public int width;
     @Shadow public int height;
 
     @Shadow protected ItemRenderer itemRenderer;
 
-    @Inject(at = @At("HEAD"), method = "renderTooltip(Lnet/minecraft/item/ItemStack;II)V", cancellable = true)
-    private void renderTooltip(ItemStack stack, int x, int y, CallbackInfo ci) {
+    @Shadow protected TextRenderer textRenderer;
 
+    @Shadow public abstract List<Text> getTooltipFromItem(ItemStack stack);
+
+    @Inject(at = @At("HEAD"), method = "renderTooltip(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/item/ItemStack;II)V", cancellable = true)
+    private void renderTooltip(MatrixStack matrices, ItemStack stack, int x, int y, CallbackInfo ci) {
         if(stack.getItem() instanceof SingularityItem) {
-            render(stack, x, y);
+            render(matrices, stack, x, y);
             ci.cancel();
         }
     }
     
     @Unique
-    private void render(ItemStack stack, int x, int y) {
-        List<String> lines = getTooltipFromItem(stack);
+    private void render(MatrixStack matrices, ItemStack stack, int x, int y) {
+        List<Text> lines = getTooltipFromItem(stack);
         SingularityItem stackItem = (SingularityItem) stack.getItem(); 
         
         if (!lines.isEmpty()) {
@@ -55,8 +57,8 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
             
             int longestWidth = 0;
 
-            for (String line : lines) {
-                int lineWidth = this.font.getStringWidth(line);
+            for (Text line : lines) {
+                int lineWidth = this.textRenderer.getWidth(line);
 
                 if (lineWidth > longestWidth) {
                     longestWidth = lineWidth;
@@ -79,7 +81,7 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
                 tooltipY = this.height - linesHeight - 6;
             }
 
-            this.setBlitOffset(300);
+            this.setZOffset(300);
             this.itemRenderer.zOffset = 300.0F;
 
 
@@ -89,19 +91,19 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
 
             // translucent blue core background
             int o = -267386864;
-            this.fillGradient(tooltipX - 3, tooltipY - 4, tooltipX + longestWidth + 3 + extraLength, tooltipY - 3, o, o); // top
-            this.fillGradient(tooltipX - 3, tooltipY + linesHeight + 3, tooltipX + longestWidth + 3 + extraLength, tooltipY + linesHeight + 4, o, o); // bottom
-            this.fillGradient(tooltipX - 3, tooltipY - 3, tooltipX + longestWidth + 3 + extraLength, tooltipY + linesHeight + 3, o, o); // middle
-            this.fillGradient(tooltipX - 4, tooltipY - 3, tooltipX - 3, tooltipY + linesHeight + 3, o, o); // left
-            this.fillGradient(tooltipX + longestWidth + 3 + extraLength + 1, tooltipY - 3, tooltipX + longestWidth + 4, tooltipY + linesHeight + 3, o, o); // right
+            this.fillGradient(matrices, tooltipX - 3, tooltipY - 4, tooltipX + longestWidth + 3 + extraLength, tooltipY - 3, o, o); // top
+            this.fillGradient(matrices, tooltipX - 3, tooltipY + linesHeight + 3, tooltipX + longestWidth + 3 + extraLength, tooltipY + linesHeight + 4, o, o); // bottom
+            this.fillGradient(matrices, tooltipX - 3, tooltipY - 3, tooltipX + longestWidth + 3 + extraLength, tooltipY + linesHeight + 3, o, o); // middle
+            this.fillGradient(matrices, tooltipX - 4, tooltipY - 3, tooltipX - 3, tooltipY + linesHeight + 3, o, o); // left
+            this.fillGradient(matrices, tooltipX + longestWidth + 3 + extraLength + 1, tooltipY - 3, tooltipX + longestWidth + 4, tooltipY + linesHeight + 3, o, o); // right
 
             // purple edge
             int p = 1347420415;
             int q = 1344798847;
-            this.fillGradient(tooltipX - 3, tooltipY - 3 + 1, tooltipX - 3 + 1, tooltipY + linesHeight + 3 - 1, p, q); // left
-            this.fillGradient(tooltipX + longestWidth + 2  + extraLength, tooltipY - 3 + 1, tooltipX + longestWidth + 3  + extraLength, tooltipY + linesHeight + 3 - 1, p, q); // right
-            this.fillGradient(tooltipX - 3, tooltipY - 3, tooltipX + longestWidth + 3 + extraLength, tooltipY - 3 + 1, p, p); // bottom
-            this.fillGradient(tooltipX - 3, tooltipY + linesHeight + 2, tooltipX + longestWidth + 3 + extraLength, tooltipY + linesHeight + 3, q, q); // top
+            this.fillGradient(matrices, tooltipX - 3, tooltipY - 3 + 1, tooltipX - 3 + 1, tooltipY + linesHeight + 3 - 1, p, q); // left
+            this.fillGradient(matrices, tooltipX + longestWidth + 2  + extraLength, tooltipY - 3 + 1, tooltipX + longestWidth + 3  + extraLength, tooltipY + linesHeight + 3 - 1, p, q); // right
+            this.fillGradient(matrices, tooltipX - 3, tooltipY - 3, tooltipX + longestWidth + 3 + extraLength, tooltipY - 3 + 1, p, p); // bottom
+            this.fillGradient(matrices, tooltipX - 3, tooltipY + linesHeight + 2, tooltipX + longestWidth + 3 + extraLength, tooltipY + linesHeight + 3, q, q); // top
 
             MatrixStack matrixStack = new MatrixStack();
             VertexConsumerProvider.Immediate immediate = VertexConsumerProvider.immediate(Tessellator.getInstance().getBuffer());
@@ -114,10 +116,10 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
 
 
             for(int lineIndex = 0; lineIndex < lines.size(); lineIndex++) {
-                String line = lines.get(lineIndex);
+                Text line = lines.get(lineIndex);
 
                 if (line != null) {
-                    this.font.draw(line, (float) tooltipX, (float) tooltipY, -1, true, matrix4f, immediate, false, 0, 15728880);
+                    this.textRenderer.draw(line, (float) tooltipX, (float) tooltipY, -1, true, matrix4f, immediate, false, 0, 15728880);
                 }
 
                 if (lineIndex == 0) {
@@ -130,7 +132,7 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
 
 
             immediate.draw();
-            this.setBlitOffset(0);
+            this.setZOffset(0);
             this.itemRenderer.zOffset = 0.0F;
 
             RenderSystem.enableDepthTest();

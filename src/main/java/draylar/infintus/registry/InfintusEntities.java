@@ -9,11 +9,11 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-public class Entities {
+public class InfintusEntities {
 
     public static final BlockEntityType<SingularityCompressorBlockEntity> SINGULARITY_COMPRESSOR = register(
             "singularity_compressor",
-            BlockEntityType.Builder.create(SingularityCompressorBlockEntity::new, Blocks.SINGULARITY_COMPRESSOR).build(null)
+            BlockEntityType.Builder.create(SingularityCompressorBlockEntity::new, InfintusBlocks.SINGULARITY_COMPRESSOR).build(null)
     );
 
 
@@ -29,7 +29,7 @@ public class Entities {
         // NO-OP
     }
 
-    private Entities() {
+    private InfintusEntities() {
         // NO-OP
     }
 }

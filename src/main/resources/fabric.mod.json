@@ -16,6 +16,7 @@
 
   "license": "GPLv3",
   "icon": "assets/infintus/icon.png",
+  "accessWidener": "infintus.accesswidener",
 
   "environment": "*",
   "entrypoints": {

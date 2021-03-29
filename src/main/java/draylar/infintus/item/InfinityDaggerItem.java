@@ -13,13 +13,13 @@ import net.minecraft.world.World;
 public class InfinityDaggerItem extends Item {
 
     public InfinityDaggerItem() {
-        super(new Item.Settings().group(Infintus.MAIN_GROUP));
+        super(new Item.Settings().group(Infintus.MAIN_GROUP).maxCount(1));
     }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
         if(!world.isClient) {
-            HitResult location = playerEntity.rayTrace(64, 0, false);
+            HitResult location = playerEntity.raycast(64, 0, false);
 
             if(world.getBlockState(new BlockPos(location.getPos()).up()).isAir()) {
                 if(world.getBlockState(new BlockPos(location.getPos()).up(2)).isAir()) {

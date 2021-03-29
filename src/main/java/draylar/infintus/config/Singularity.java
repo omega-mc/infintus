@@ -36,10 +36,14 @@ public class Singularity {
         return autoHue;
     }
 
+    public boolean isCraftable() {
+        return !sourceID.equals("minecraft:air");
+    }
+
     public static class Builder {
 
         private String name = "apple";
-        private String sourceID = "minecraft:apple";
+        private String sourceID = "minecraft:air";
         private int singularityColor = 0x1ED4D1;
         private int cost = 10000;
         private boolean autoHue = true;
