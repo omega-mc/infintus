@@ -15,6 +15,9 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.registry.Registry;
@@ -65,6 +68,7 @@ public class SingularityCompressorBlockEntity extends BlockEntity implements Tic
 
         // currently compressing, tick
         else {
+            ((ServerWorld) world).playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_BEACON_POWER_SELECT, SoundCategory.BLOCKS, 0.5f, 0.0f);
 
             // check if we're finished compressing
             if(compressionProgress >= REQUIRED_PROGRESS) {

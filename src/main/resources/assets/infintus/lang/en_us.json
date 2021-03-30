@@ -34,5 +34,8 @@
   "item.infintus.prismarine_singularity": "Prismarine Singularity",
 
   "block.infintus.singularity_compressor": "Singularity Compressor",
-  "block.infintus.infinity_crafting_table": "Infinity Crafting Table"
+  "block.infintus.infinity_crafting_table": "Infinity Crafting Table",
+
+  "item.infintus.twilight_essence": "Twilight Essence",
+  "item.infintus.dark_binding": "Dark Binding"
 }

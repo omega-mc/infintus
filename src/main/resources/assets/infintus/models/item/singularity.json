@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "infintus:item/singularity2",
-    "layer1": "infintus:item/singularity"
+    "layer0": "infintus:item/background",
+    "layer1": "infintus:item/singularity3"
   }
 }

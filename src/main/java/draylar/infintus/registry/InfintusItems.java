@@ -7,6 +7,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
 import java.util.HashMap;
@@ -33,8 +34,10 @@ public class InfintusItems {
     // other items
     public static final Item GARDEN_OF_EVE = register("garden_of_eve", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(100000).build()).group(Infintus.MAIN_GROUP)));
     public static final Item ULTIMATE_DINER_DELUXE = register("ultimate_diner_deluxe", new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(100000).build()).group(Infintus.MAIN_GROUP)));
-
-    // base singularities
+    public static final Item DARK_BINDING = register("dark_binding", new Item(new Item.Settings().group(Infintus.MAIN_GROUP).rarity(Rarity.EPIC)));
+    public static final Item TWILIGHT_ESSENCE = register("twilight_essence", new Item(new Item.Settings().group(Infintus.MAIN_GROUP).rarity(Rarity.UNCOMMON)));
+    public static final Item RAW_INFINITY = register("raw_infinity", new Item(new Item.Settings().group(Infintus.MAIN_GROUP)));
+    public static final Item MANIFEST_INFINITY = register("manifest_infinity", new Item(new Item.Settings().group(Infintus.MAIN_GROUP)));
     public static final Item INFINITY_SINGULARITY = register("infinity_singularity", new Item(new Item.Settings().group(Infintus.MAIN_GROUP)));
 
     // auto-genned singularities

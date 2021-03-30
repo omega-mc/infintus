@@ -33,6 +33,6 @@ public class InfinityToolMaterial implements ToolMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(InfintusItems.INFINITY_SINGULARITY);
+        return Ingredient.ofItems(InfintusItems.MANIFEST_INFINITY);
     }
 }

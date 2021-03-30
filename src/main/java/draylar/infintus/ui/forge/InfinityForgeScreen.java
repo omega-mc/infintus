@@ -19,20 +19,30 @@ public class InfinityForgeScreen extends HandledScreen<InfinityForgeScreenHandle
 
     @Override
     public void init(MinecraftClient client, int width, int height) {
-        int i = client.getWindow().calculateScaleFactor(Math.min(3, client.options.guiScale), client.forcesUnicodeFont());
-        client.getWindow().setScaleFactor(i);
+        int i = client.getWindow().calculateScaleFactor(client.options.guiScale, client.forcesUnicodeFont());
+        client.getWindow().setScaleFactor(i - 1);
+
         Framebuffer framebuffer = client.getFramebuffer();
         framebuffer.resize(client.getWindow().getFramebufferWidth(), client.getWindow().getFramebufferHeight(), MinecraftClient.IS_SYSTEM_MAC);
         client.gameRenderer.onResized(client.getWindow().getFramebufferWidth(), client.getWindow().getFramebufferHeight());
         client.mouse.onResolutionChanged();
 
-        super.init(client, width, height);
+        super.init(client, client.getWindow().getScaledWidth(), client.getWindow().getScaledHeight());
+    }
+
+    @Override
+    public void onClose() {
+        int i = client.getWindow().calculateScaleFactor(client.options.guiScale, client.forcesUnicodeFont());
+        client.getWindow().setScaleFactor(i);
+        super.onClose();
     }
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);
+
         super.render(matrices, mouseX, mouseY, delta);
+        drawMouseoverTooltip(matrices, mouseX, mouseY);
     }
 
     @Override
